@@ -22,6 +22,13 @@ export const GlobalCss = createGlobalStyle`
   }
   }
 `
+export const Titulo = styled.h3`
+  font-size: 18px;
+  font-weight: bold;
+  color: ${Cores.vermelho};
+  line-height: 21px;
+  margin: 8px 7px;
+`
 
 export const Botao = styled.button`
   padding: 4px 6px;

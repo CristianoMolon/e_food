@@ -1,27 +1,31 @@
-import { Card, Descricao, Infos, Tag, Titulo } from './styles'
+import { Card, Descricao, Infos, Tag } from './styles'
 import estrela from '../../assets/images/estrela.png'
-import { Botao } from '../../styles'
+import { Botao, Titulo } from '../../styles'
 
-const Cards = () => (
+type Props = {
+  infos: string[]
+  descricao: string
+  titulo: string
+  imagem: string
+  nota: string
+}
+
+const Cards = ({ titulo, descricao, infos, imagem, nota }: Props) => (
   <Card>
-    <img src="//placehold.it/472x217" />
+    <img src={imagem} alt={titulo} />
     <Infos>
-      <Tag>tag</Tag>
-      <Tag>promo</Tag>
+      {infos.map((info) => (
+        <Tag key={info}>{info}</Tag>
+      ))}
     </Infos>
     <div className="align">
-      <Titulo>Titulo</Titulo>
+      <Titulo>{titulo}</Titulo>
       <Titulo>
-        5.0 <img src={estrela} />
+        {nota} <img src={estrela} />
       </Titulo>
     </div>
-    <Descricao>
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis,
-      exercitationem ad illum autem minima sequi asperiores? Modi quod rem iure
-      dignissimos, quas voluptate maxime, doloribus voluptatem consectetur,
-      porro aliquid aliquam.
-    </Descricao>
-    <Botao>butao</Botao>
+    <Descricao>{descricao}</Descricao>
+    <Botao>Saiba mais</Botao>
   </Card>
 )
 

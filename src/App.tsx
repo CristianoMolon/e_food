@@ -1,7 +1,17 @@
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+
 import Footer from './components/Footer'
 import Header from './components/Header'
-import Home from './components/Home'
+
 import { GlobalCss } from './styles'
+import Home from './pages/ListaRestaurantes'
+
+const rotas = createBrowserRouter([
+  {
+    path: '/',
+    element: <Home />
+  }
+])
 
 function App() {
   return (
@@ -10,7 +20,7 @@ function App() {
       <div>
         <Header />
       </div>
-      <Home />
+      <RouterProvider router={rotas} />
       <Footer />
     </>
   )
