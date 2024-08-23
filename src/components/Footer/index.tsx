@@ -1,7 +1,7 @@
-import logo from '../../assets/images/logo.png'
-import instagram from '../../assets/images/instagram.png'
-import facebook from '../../assets/images/facebook.png'
-import twitter from '../../assets/images/twitter.png'
+import logo from '../../assets/images/simbolos/logo.png'
+import instagram from '../../assets/images//simbolos/instagram.png'
+import facebook from '../../assets/images//simbolos/facebook.png'
+import twitter from '../../assets/images//simbolos/twitter.png'
 import { Container, SocialLinks } from './styles'
 
 const Footer = () => (

@@ -1,7 +1,7 @@
 import Restaurante from '../../Models/Restaurantes'
 
-import japonesa from '../../assets/images/japonesa.png'
-import italiana from '../../assets/images/italiana.png'
+import japonesa from '../../assets/images/comidas/japonesa.png'
+import italiana from '../../assets/images/comidas/italiana.png'
 
 import ListaRestaurantes from '../../components/ListaRestaurantes'
 

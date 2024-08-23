@@ -1,5 +1,5 @@
 import { Card, Descricao, Infos, Tag } from './styles'
-import estrela from '../../assets/images/estrela.png'
+import estrela from '../../assets/images//simbolos/estrela.png'
 import { Botao, Titulo } from '../../styles'
 
 type Props = {

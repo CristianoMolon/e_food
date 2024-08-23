@@ -1,5 +1,5 @@
-import vetorImg from '../../assets/images/Vector.png'
-import logo from '../../assets/images/logo.png'
+import vetorImg from '../../assets/images/simbolos/Vector.png'
+import logo from '../../assets/images/simbolos/logo.png'
 import { Logo, TextoHeader, Vetor } from './styles'
 
 const Header = () => (
