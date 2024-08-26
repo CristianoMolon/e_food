@@ -1,6 +1,7 @@
 import { Card, Descricao, Infos, Tag } from './styles'
 import estrela from '../../assets/images//simbolos/estrela.png'
-import { Botao, Titulo } from '../../styles'
+import { Titulo } from '../../styles'
+import Botoes from '../Buttons'
 
 type Props = {
   infos: string[]
@@ -25,7 +26,9 @@ const Cards = ({ titulo, descricao, infos, imagem, nota }: Props) => (
       </Titulo>
     </div>
     <Descricao>{descricao}</Descricao>
-    <Botao>Saiba mais</Botao>
+    <Botoes type="link" to="/cardapio">
+      Saiba mais
+    </Botoes>
   </Card>
 )
 

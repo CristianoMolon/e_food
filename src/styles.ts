@@ -14,6 +14,7 @@ export const GlobalCss = createGlobalStyle`
     box-sizing: border-box;
     font-family: Roboto, 'sans-serif';
     list-style: none;
+    text-decoration: none;
 
     .container {
     max-width: 1024px;
@@ -28,14 +29,4 @@ export const Titulo = styled.h3`
   color: ${Cores.vermelho};
   line-height: 21px;
   margin: 8px 7px;
-`
-
-export const Botao = styled.button`
-  padding: 4px 6px;
-  font-size: 14px;
-  font-weight: bold;
-  background-color: ${Cores.vermelho};
-  color: ${Cores.bege};
-  border: none;
-  margin: 8px;
 `

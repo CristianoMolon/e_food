@@ -4,6 +4,7 @@ import japonesa from '../../assets/images/comidas/japonesa.png'
 import italiana from '../../assets/images/comidas/italiana.png'
 
 import ListaRestaurantes from '../../components/ListaRestaurantes'
+import Header from '../../components/Header'
 
 const restaurantes: Restaurante[] = [
   {
@@ -62,6 +63,12 @@ const restaurantes: Restaurante[] = [
   }
 ]
 
-const Home = () => <ListaRestaurantes restaurantes={restaurantes} />
-
+const Home = () => (
+  <>
+    <div>
+      <Header />
+    </div>
+    <ListaRestaurantes restaurantes={restaurantes} />
+  </>
+)
 export default Home

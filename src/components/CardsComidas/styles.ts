@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Botao, Cores, Titulo } from '../../styles'
+import { Cores, Titulo } from '../../styles'
 import { Descricao } from '../Cards/styles'
 
 export const Comidas = styled.div`
@@ -16,11 +16,4 @@ export const NomeDoPrato = styled(Titulo)`
 
 export const DescricDoPrato = styled(Descricao)`
   color: ${Cores.bege};
-`
-export const BotaoAdd = styled(Botao)`
-  max-width: 304px;
-  width: 100%;
-  text-align: center;
-  background-color: ${Cores.bege};
-  color: ${Cores.vermelho};
 `

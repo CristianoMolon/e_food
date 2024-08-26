@@ -1,4 +1,5 @@
-import { BotaoAdd, Comidas, DescricDoPrato, NomeDoPrato } from './styles'
+import Botoes from '../Buttons'
+import { Comidas, DescricDoPrato, NomeDoPrato } from './styles'
 
 type Props = {
   descricao: string
@@ -13,7 +14,7 @@ const CardsComidas = ({ titulo, descricao, imagem }: Props) => (
       <NomeDoPrato>{titulo}</NomeDoPrato>
     </div>
     <DescricDoPrato>{descricao}</DescricDoPrato>
-    <BotaoAdd>Adicionar ao carrinho</BotaoAdd>
+    <Botoes type="button">Adicionar ao carrinho</Botoes>
   </Comidas>
 )
 

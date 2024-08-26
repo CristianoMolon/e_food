@@ -1,6 +1,7 @@
 import Pratos from '../../Models/Pratos'
 
 import pizza from '../../assets/images/comidas/pizza.png'
+import Banner from '../../components/Banner'
 import ListaPratos from '../../components/ListaPratos'
 
 const comidas: Pratos[] = [
@@ -48,6 +49,11 @@ const comidas: Pratos[] = [
   }
 ]
 
-const Cardapio = () => <ListaPratos pratos={comidas} />
+const Cardapio = () => (
+  <>
+    <Banner />
+    <ListaPratos pratos={comidas} />
+  </>
+)
 
 export default Cardapio
