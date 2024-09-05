@@ -42,7 +42,7 @@ const Cards = ({
         </Titulo>
       </div>
       <Descricao>{descricao}</Descricao>
-      <Botoes type="link" to="/cardapio">
+      <Botoes type="link" to={`/restaurantes/${id}`}>
         Saiba mais
       </Botoes>
     </Card>

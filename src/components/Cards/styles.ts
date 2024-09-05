@@ -9,6 +9,7 @@ export const Card = styled.div`
   > img {
     width: 472px;
     height: 217px;
+    object-fit: cover;
   }
 
   .align {

@@ -3,26 +3,28 @@ import CardsComidas from '../CardsComidas'
 import { Container } from '../ListaRestaurantes/styles'
 import { ListadePratos } from './styles'
 
-export type Props = {
-  pratos: Restaurantes[]
+type Props = {
+  cardapios: Restaurantes[]
 }
 
-const ListaPratos = ({ pratos }: Props) => (
-  <Container>
-    <div className="container">
-      <ListadePratos>
-        {pratos.map((restaurante) => (
-          <li key={restaurante.cardapio.id}>
-            <CardsComidas
-              descricao={restaurante.cardapio.descricao}
-              nome={restaurante.cardapio.nome}
-              foto={restaurante.cardapio.foto}
-            />
-          </li>
-        ))}
-      </ListadePratos>
-    </div>
-  </Container>
-)
+const ListaPratos = ({ cardapios }: Props) => {
+  return (
+    <Container>
+      <div className="container">
+        <ListadePratos>
+          {cardapios.map((prato) => (
+            <li key={prato.cardapio.id}>
+              <CardsComidas
+                descricao={prato.cardapio.descricao}
+                nome={prato.cardapio.nome}
+                foto={prato.cardapio.foto}
+              />
+            </li>
+          ))}
+        </ListadePratos>
+      </div>
+    </Container>
+  )
+}
 
 export default ListaPratos

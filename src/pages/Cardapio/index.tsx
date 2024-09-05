@@ -16,10 +16,14 @@ const Cardapio = () => {
       .then((res) => setPrato(res))
   }, [id])
 
+  if (!prato) {
+    return <h3>Carregando...</h3>
+  }
+
   return (
     <>
       <Banner />
-      <ListaPratos pratos={prato} />
+      <ListaPratos cardapios={prato} />
     </>
   )
 }
