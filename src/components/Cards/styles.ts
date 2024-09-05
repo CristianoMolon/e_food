@@ -6,6 +6,11 @@ export const Card = styled.div`
   border: 1px solid ${Cores.vermelho};
   position: relative;
 
+  > img {
+    width: 472px;
+    height: 217px;
+  }
+
   .align {
     display: flex;
     justify-content: space-between;
