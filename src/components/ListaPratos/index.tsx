@@ -4,7 +4,7 @@ import { Container } from '../ListaRestaurantes/styles'
 import { ListadePratos } from './styles'
 
 type Props = {
-  cardapios: Restaurantes[]
+  cardapios: Restaurantes
 }
 
 const ListaPratos = ({ cardapios }: Props) => {
@@ -12,15 +12,16 @@ const ListaPratos = ({ cardapios }: Props) => {
     <Container>
       <div className="container">
         <ListadePratos>
-          {cardapios.map((prato) => (
-            <li key={prato.cardapio.id}>
-              <CardsComidas
-                descricao={prato.cardapio.descricao}
-                nome={prato.cardapio.nome}
-                foto={prato.cardapio.foto}
-              />
-            </li>
-          ))}
+          <li key={cardapios.id}>
+            <CardsComidas
+              id={cardapios.cardapio.id}
+              descricao={cardapios.cardapio.descricao}
+              nome={cardapios.cardapio.nome}
+              foto={cardapios.cardapio.foto}
+              preco={cardapios.cardapio.preco}
+              porcao={cardapios.cardapio.porcao}
+            />
+          </li>
         </ListadePratos>
       </div>
     </Container>

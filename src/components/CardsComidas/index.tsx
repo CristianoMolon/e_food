@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Botoes from '../Buttons'
+import { BotaoAdd } from '../Buttons/styles'
 import {
   Comidas,
   DescricDoPrato,
@@ -17,13 +18,16 @@ type Props = {
   descricao: string
   nome: string
   foto: string
+  preco: number
+  id: number
+  porcao: string
 }
 
 interface ModalState {
   isVisible: boolean
 }
 
-const CardsComidas = ({ nome, descricao, foto }: Props) => {
+const CardsComidas = ({ nome, descricao, foto, preco, porcao }: Props) => {
   const [modal, setModal] = useState<ModalState>({
     isVisible: false
   })
@@ -32,6 +36,13 @@ const CardsComidas = ({ nome, descricao, foto }: Props) => {
     setModal({
       isVisible: false
     })
+  }
+
+  const formataPreco = (preco = 0) => {
+    return new Intl.NumberFormat('pt-Br', {
+      style: 'currency',
+      currency: 'BRL'
+    }).format(preco)
   }
 
   return (
@@ -63,8 +74,10 @@ const CardsComidas = ({ nome, descricao, foto }: Props) => {
             <div>
               <Titulo>{nome}</Titulo>
               <Descricao>{descricao}</Descricao>
-              <Descricao>Serve:</Descricao>
-              <Botoes type="button">Adicionar ao carrinho</Botoes>
+              <Descricao>Serve: {porcao}</Descricao>
+              <BotaoAdd type="button">
+                Adicionar ao carrinho - ${formataPreco(preco)}
+              </BotaoAdd>
             </div>
           </ModalContent>
         </ModalCard>

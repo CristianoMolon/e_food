@@ -28,6 +28,13 @@ const Cards = ({
     }
   }
 
+  const getDescricao = (descricao: string) => {
+    if (descricao.length > 300) {
+      return descricao.slice(0, 275) + '...'
+    }
+    return descricao
+  }
+
   return (
     <Card>
       <img src={capa} alt={titulo} />
@@ -41,7 +48,7 @@ const Cards = ({
           {avaliacao} <img src={estrela} />
         </Titulo>
       </div>
-      <Descricao>{descricao}</Descricao>
+      <Descricao>{getDescricao(descricao)}</Descricao>
       <Botoes type="link" to={`/restaurantes/${id}`}>
         Saiba mais
       </Botoes>
