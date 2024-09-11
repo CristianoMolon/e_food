@@ -7,6 +7,8 @@ export const Comidas = styled.div`
 
   img {
     padding: 8px;
+    width: 100%;
+    height: 170px;
   }
 `
 

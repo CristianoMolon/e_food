@@ -1,10 +1,10 @@
-import { Restaurantes } from '../../pages/ListaHome'
+import { Cardapio } from '../../pages/ListaHome'
 import CardsComidas from '../CardsComidas'
 import { Container } from '../ListaRestaurantes/styles'
 import { ListadePratos } from './styles'
 
 type Props = {
-  cardapios: Restaurantes
+  cardapios: Cardapio[]
 }
 
 const ListaPratos = ({ cardapios }: Props) => {
@@ -12,16 +12,18 @@ const ListaPratos = ({ cardapios }: Props) => {
     <Container>
       <div className="container">
         <ListadePratos>
-          <li key={cardapios.id}>
-            <CardsComidas
-              id={cardapios.cardapio.id}
-              descricao={cardapios.cardapio.descricao}
-              nome={cardapios.cardapio.nome}
-              foto={cardapios.cardapio.foto}
-              preco={cardapios.cardapio.preco}
-              porcao={cardapios.cardapio.porcao}
-            />
-          </li>
+          {cardapios.map((cardapio) => (
+            <li key={cardapio.id}>
+              <CardsComidas
+                id={cardapio.id}
+                descricao={cardapio.descricao}
+                nome={cardapio.nome}
+                foto={cardapio.foto}
+                preco={cardapio.preco}
+                porcao={cardapio.porcao}
+              />
+            </li>
+          ))}
         </ListadePratos>
       </div>
     </Container>

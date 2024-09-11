@@ -5,7 +5,7 @@ import { Restaurantes } from '../ListaHome'
 import Banner from '../../components/Banner'
 import ListaPratos from '../../components/ListaPratos'
 
-const Cardapio = () => {
+const CardapioRes = () => {
   const { id } = useParams()
 
   const [cardapio, setCardapio] = useState<Restaurantes>()
@@ -23,9 +23,9 @@ const Cardapio = () => {
   return (
     <>
       <Banner cardapios={cardapio} />
-      <ListaPratos cardapios={cardapio} />
+      <ListaPratos cardapios={cardapio.cardapio} />
     </>
   )
 }
 
-export default Cardapio
+export default CardapioRes
