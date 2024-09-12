@@ -14,12 +14,14 @@ const Home = ({ restaurantes }: Props) => (
           <li key={restaurante.id}>
             <Cards
               id={restaurante.id}
-              tipo={restaurante.tipo}
               descricao={restaurante.descricao}
               titulo={restaurante.titulo}
               capa={restaurante.capa}
               avaliacao={restaurante.avaliacao}
-              destacado={restaurante.destacado}
+              destacado={[
+                restaurante.destacado ? 'Destaque da Semana' : '',
+                restaurante.tipo
+              ]}
             />
           </li>
         ))}

@@ -3,9 +3,8 @@ import estrela from '../../assets/images//simbolos/estrela.png'
 import { Titulo } from '../../styles'
 import Botoes from '../Buttons'
 
-type Props = {
-  tipo: string
-  destacado: boolean
+export type Props = {
+  destacado: string[]
   descricao: string
   titulo: string
   capa: string
@@ -16,18 +15,11 @@ type Props = {
 const Cards = ({
   titulo,
   descricao,
-  tipo,
   capa,
   avaliacao,
   id,
   destacado
 }: Props) => {
-  const getDestacado = (destacado: boolean) => {
-    if (destacado === true) {
-      return 'Destaque da semana'
-    }
-  }
-
   const getDescricao = (descricao: string) => {
     if (descricao.length > 300) {
       return descricao.slice(0, 275) + '...'
@@ -39,8 +31,11 @@ const Cards = ({
     <Card>
       <img src={capa} alt={titulo} />
       <Infos>
-        <Tag>{getDestacado(destacado)}</Tag>
-        <Tag>{tipo}</Tag>
+        {destacado.map((info) => {
+          if (info) {
+            return <Tag key={info}>{info}</Tag>
+          }
+        })}
       </Infos>
       <div className="align">
         <Titulo>{titulo}</Titulo>

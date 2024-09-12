@@ -5,7 +5,7 @@ import { Restaurantes } from '../ListaHome'
 import Banner from '../../components/Banner'
 import ListaPratos from '../../components/ListaPratos'
 
-const CardapioRes = () => {
+const Perfil = () => {
   const { id } = useParams()
 
   const [cardapio, setCardapio] = useState<Restaurantes>()
@@ -28,4 +28,4 @@ const CardapioRes = () => {
   )
 }
 
-export default CardapioRes
+export default Perfil

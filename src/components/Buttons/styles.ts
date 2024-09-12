@@ -25,4 +25,8 @@ export const BotaoAdd = styled.button`
   color: ${Cores.vermelho};
   border: none;
   margin: 8px;
+
+  &:hover {
+    cursor: pointer;
+  }
 `

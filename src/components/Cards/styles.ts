@@ -27,6 +27,7 @@ export const Tag = styled.span`
   font-size: 12px;
   font-weight: bold;
   align-items: center;
+  display: inline;
 `
 export const Infos = styled.div`
   position: absolute;

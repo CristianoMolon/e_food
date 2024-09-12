@@ -45,6 +45,13 @@ const CardsComidas = ({ nome, descricao, foto, preco, porcao }: Props) => {
     }).format(preco)
   }
 
+  const getDescricao = (descricao: string) => {
+    if (descricao.length > 250) {
+      return descricao.slice(0, 250) + '...'
+    }
+    return descricao
+  }
+
   return (
     <>
       <Comidas>
@@ -52,7 +59,7 @@ const CardsComidas = ({ nome, descricao, foto, preco, porcao }: Props) => {
         <div className="align">
           <NomeDoPrato>{nome}</NomeDoPrato>
         </div>
-        <DescricDoPrato>{descricao}</DescricDoPrato>
+        <DescricDoPrato>{getDescricao(descricao)}</DescricDoPrato>
         <Botoes
           onClick={() => {
             setModal({
@@ -76,7 +83,7 @@ const CardsComidas = ({ nome, descricao, foto, preco, porcao }: Props) => {
               <Descricao>{descricao}</Descricao>
               <Descricao>Serve: {porcao}</Descricao>
               <BotaoAdd type="button">
-                Adicionar ao carrinho - ${formataPreco(preco)}
+                Adicionar ao carrinho - {formataPreco(preco)}
               </BotaoAdd>
             </div>
           </ModalContent>
