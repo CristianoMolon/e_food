@@ -21,6 +21,7 @@ const ListaPratos = ({ cardapios }: Props) => {
                 foto={cardapio.foto}
                 preco={cardapio.preco}
                 porcao={cardapio.porcao}
+                prato={cardapio}
               />
             </li>
           ))}

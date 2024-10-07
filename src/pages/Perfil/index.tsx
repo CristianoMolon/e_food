@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import Banner from '../../components/Banner'
 import ListaPratos from '../../components/ListaPratos'
 import { useGetCardapiosQuery } from '../../services/api'
+import Carrinho from '../../components/Carrinho'
 
 const Perfil = () => {
   const { id } = useParams()
@@ -17,6 +18,7 @@ const Perfil = () => {
     <>
       <Banner cardapios={cardapio} />
       <ListaPratos cardapios={cardapio.cardapio} />
+      <Carrinho />
     </>
   )
 }

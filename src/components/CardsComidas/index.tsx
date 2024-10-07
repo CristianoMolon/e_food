@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import Botoes from '../Buttons'
 import { BotaoAdd } from '../Buttons/styles'
 import {
@@ -13,8 +14,11 @@ import {
 import fechar from '../../assets/images/simbolos/fechar.png'
 import { Titulo } from '../../styles'
 import { Descricao } from '../Cards/styles'
+import { add, open } from '../../store/reducers/cart'
+import { Cardapio } from '../../pages/ListaHome'
 
 type Props = {
+  prato: Cardapio
   descricao: string
   nome: string
   foto: string
@@ -27,7 +31,21 @@ interface ModalState {
   isVisible: boolean
 }
 
-const CardsComidas = ({ nome, descricao, foto, preco, porcao }: Props) => {
+export const formataPreco = (preco = 0) => {
+  return new Intl.NumberFormat('pt-Br', {
+    style: 'currency',
+    currency: 'BRL'
+  }).format(preco)
+}
+
+const CardsComidas = ({
+  prato,
+  nome,
+  descricao,
+  foto,
+  preco,
+  porcao
+}: Props) => {
   const [modal, setModal] = useState<ModalState>({
     isVisible: false
   })
@@ -38,18 +56,18 @@ const CardsComidas = ({ nome, descricao, foto, preco, porcao }: Props) => {
     })
   }
 
-  const formataPreco = (preco = 0) => {
-    return new Intl.NumberFormat('pt-Br', {
-      style: 'currency',
-      currency: 'BRL'
-    }).format(preco)
-  }
-
   const getDescricao = (descricao: string) => {
     if (descricao.length > 250) {
       return descricao.slice(0, 250) + '...'
     }
     return descricao
+  }
+
+  const dispatch = useDispatch()
+
+  const addCarrinho = () => {
+    dispatch(add(prato))
+    dispatch(open())
   }
 
   return (
@@ -82,7 +100,7 @@ const CardsComidas = ({ nome, descricao, foto, preco, porcao }: Props) => {
               <Titulo>{nome}</Titulo>
               <Descricao>{descricao}</Descricao>
               <Descricao>Serve: {porcao}</Descricao>
-              <BotaoAdd type="button">
+              <BotaoAdd onClick={addCarrinho} type="button">
                 Adicionar ao carrinho - {formataPreco(preco)}
               </BotaoAdd>
             </div>
