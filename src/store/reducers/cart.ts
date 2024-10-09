@@ -20,6 +20,8 @@ const cartSlice = createSlice({
 
       if (!prato) {
         state.itens.push(action.payload)
+      } else {
+        state.itens.push(action.payload)
       }
     },
     remove: (state, action: PayloadAction<number>) => {
