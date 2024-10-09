@@ -21,7 +21,7 @@ const cartSlice = createSlice({
       if (!prato) {
         state.itens.push(action.payload)
       } else {
-        state.itens.push(action.payload)
+        alert('Item já está no carrinho')
       }
     },
     remove: (state, action: PayloadAction<number>) => {
