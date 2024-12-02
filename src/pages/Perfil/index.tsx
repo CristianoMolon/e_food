@@ -4,6 +4,7 @@ import Banner from '../../components/Banner'
 import ListaPratos from '../../components/ListaPratos'
 import { useGetCardapiosQuery } from '../../services/api'
 import Carrinho from '../../components/Carrinho'
+import Checkout from '../../components/Checkout'
 
 const Perfil = () => {
   const { id } = useParams()
@@ -19,6 +20,7 @@ const Perfil = () => {
       <Banner cardapios={cardapio} />
       <ListaPratos cardapios={cardapio.cardapio} />
       <Carrinho />
+      <Checkout />
     </>
   )
 }

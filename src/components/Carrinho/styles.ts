@@ -73,6 +73,7 @@ export const Item = styled.div`
     height: 60px;
     margin-left: 8px;
     justify-content: space-between;
+    color: ${Cores.vermelho};
   }
 
   button {
