@@ -15,7 +15,7 @@ import fechar from '../../assets/images/simbolos/fechar.png'
 import { Titulo } from '../../styles'
 import { Descricao } from '../Cards/styles'
 import { add, open } from '../../store/reducers/cart'
-import { Cardapio } from '../../pages/ListaHome'
+import { formataPreco } from '../../utils'
 
 type Props = {
   prato: Cardapio
@@ -29,13 +29,6 @@ type Props = {
 
 interface ModalState {
   isVisible: boolean
-}
-
-export const formataPreco = (preco = 0) => {
-  return new Intl.NumberFormat('pt-Br', {
-    style: 'currency',
-    currency: 'BRL'
-  }).format(preco)
 }
 
 const CardsComidas = ({

@@ -4,17 +4,18 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 
 import { Titulo } from '../../styles'
-import Botoes from '../Buttons'
-import { Overlay, Sidebar } from '../Carrinho/styles'
+import Botoes from '../../components/Buttons'
+import { Overlay, Sidebar } from '../../components/Carrinho/styles'
 import { DeliveryContainer, InputGroup, Row } from './styles'
 import { usePurchaseMutation } from '../../services/api'
-import { close } from '../../store/reducers/cart'
+import { open } from '../../store/reducers/cart'
 import { formataPreco, getTotalPrice } from '../../utils'
 import { RootReducer } from '../../store'
 
-const Checkout = () => {
+const Checkout = ({ onClose }: { onClose: () => void }) => {
   const { itens, isOpen } = useSelector((state: RootReducer) => state.cart)
   const [pagamento, setPagamento] = useState(false)
+  const [abreCarrinho, setAbreCarrinho] = useState(false)
   const [purchase, { isLoading, isError, data, isSuccess }] =
     usePurchaseMutation()
 
@@ -111,8 +112,10 @@ const Checkout = () => {
 
   const Dispatch = useDispatch()
 
-  const closeChekout = () => {
-    Dispatch(close())
+  const voltaCarrinho = () => {
+    setAbreCarrinho(true)
+    onClose()
+    Dispatch(open())
   }
 
   return (
@@ -309,7 +312,7 @@ const Checkout = () => {
                 <Botoes type="button" onClick={() => setPagamento(true)}>
                   Continuar para o pagamento
                 </Botoes>
-                <Botoes type="button" onClick={closeChekout}>
+                <Botoes type="button" onClick={voltaCarrinho}>
                   Voltar para o carrinho
                 </Botoes>
               </>

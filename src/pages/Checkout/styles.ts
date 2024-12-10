@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { Cores, Titulo } from '../../styles'
-import { Sidebar } from '../Carrinho/styles'
-import { BotaoAdd } from '../Buttons/styles'
+import { Sidebar } from '../../components/Carrinho/styles'
+import { BotaoAdd } from '../../components/Buttons/styles'
 
 type InputGroupProps = {
   maxWidth?: string
@@ -32,7 +32,7 @@ export const DeliveryContainer = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  display: none;
+  display: flex;
   justify-content: flex-end;
   z-index: 1;
 

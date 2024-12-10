@@ -5,7 +5,6 @@ import vetor from '../../assets/images/simbolos/Vector.png'
 import logo from '../../assets/images/simbolos/logo.png'
 import { Titulo } from '../../styles'
 import { Imagem, Tag, Vetor } from './styles'
-import { Restaurantes } from '../../pages/ListaHome'
 import { open } from '../../store/reducers/cart'
 import { RootReducer } from '../../store'
 

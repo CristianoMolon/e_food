@@ -1,14 +1,14 @@
 import { Botao, BotaoAdd } from './styles'
 
 type Props = {
-  type: 'button' | 'link'
+  type: 'button' | 'link' | 'submit'
   to?: string
   onClick?: () => void
   children: string
 }
 
 const Botoes = ({ type, to, onClick, children }: Props) => {
-  if (type === 'button') {
+  if (type === 'button' || type === 'submit') {
     return (
       <BotaoAdd type="button" onClick={onClick}>
         {children}

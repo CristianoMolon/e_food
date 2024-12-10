@@ -1,4 +1,3 @@
-import { Cardapio } from '../../pages/ListaHome'
 import CardsComidas from '../CardsComidas'
 import { Container } from '../ListaRestaurantes/styles'
 import { ListadePratos } from './styles'
