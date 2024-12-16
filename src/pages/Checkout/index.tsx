@@ -1,23 +1,27 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
+import InputMask from 'react-input-mask'
+import { useNavigate } from 'react-router-dom'
 
 import { Titulo } from '../../styles'
-import Botoes from '../../components/Buttons'
 import { Overlay, Sidebar } from '../../components/Carrinho/styles'
-import { DeliveryContainer, InputGroup, Row } from './styles'
+import * as S from './styles'
+
 import { usePurchaseMutation } from '../../services/api'
-import { open } from '../../store/reducers/cart'
+import { open, clear } from '../../store/reducers/cart'
 import { formataPreco, getTotalPrice } from '../../utils'
 import { RootReducer } from '../../store'
+import Botoes from '../../components/Buttons'
 
 const Checkout = ({ onClose }: { onClose: () => void }) => {
-  const { itens, isOpen } = useSelector((state: RootReducer) => state.cart)
+  const { itens } = useSelector((state: RootReducer) => state.cart)
   const [pagamento, setPagamento] = useState(false)
   const [abreCarrinho, setAbreCarrinho] = useState(false)
-  const [purchase, { isLoading, isError, data, isSuccess }] =
-    usePurchaseMutation()
+  const [purchase, { data, isSuccess }] = usePurchaseMutation()
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const form = useFormik({
     initialValues: {
@@ -31,7 +35,7 @@ const Checkout = ({ onClose }: { onClose: () => void }) => {
       complemento: '',
       nomeCartao: '',
       numeroCartao: '',
-      cvv: 0,
+      cvv: '',
       mesValidade: '',
       anoValidade: ''
     },
@@ -45,8 +49,8 @@ const Checkout = ({ onClose }: { onClose: () => void }) => {
         .required('O campo é obrigatório'),
       cidade: Yup.string().required('O campo é obrigatório'),
       CEP: Yup.string()
-        .min(8, 'O campo precisa ter 8 caracteres')
-        .max(8, 'O campo precisa ter 8 caracteres')
+        .min(9, 'O campo precisa ter 8 caracteres')
+        .max(9, 'O campo precisa ter 8 caracteres')
         .required('O campo é obrigatório'),
       numero: Yup.string().required('O campo é obrigatório'),
       complemento: Yup.string().min(
@@ -102,29 +106,39 @@ const Checkout = ({ onClose }: { onClose: () => void }) => {
     }
   })
 
-  const getErrorMessage = (fieldName: string, message?: string) => {
-    const isTouched = fieldName in form.touched
-    const isInvalid = fieldName in form.errors
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(clear())
+    }
+  }, [dispatch, isSuccess])
 
-    if (isTouched && isInvalid) return message
-    return ''
+  const finalizaCompra = () => {
+    if (itens.length === 0) {
+      return navigate('/')
+    }
   }
 
-  const Dispatch = useDispatch()
+  const getErrorMessage = (fieldName: string) => {
+    const isTouched = fieldName in form.touched
+    const isInvalid = fieldName in form.errors
+    const hasError = isTouched && isInvalid
+
+    return hasError
+  }
 
   const voltaCarrinho = () => {
     setAbreCarrinho(true)
     onClose()
-    Dispatch(open())
+    dispatch(open())
   }
 
   return (
-    <DeliveryContainer className={isOpen ? 'is-open' : ''}>
+    <S.DeliveryContainer>
       <Overlay />
       <Sidebar>
         {isSuccess && data ? (
           <>
-            <Row>
+            <S.Row>
               <Titulo>Pedido Realizado - {data.orderId}</Titulo>
               <p className="margin-top">
                 Estamos felizes em informar que seu pedido já está em processo
@@ -143,8 +157,10 @@ const Checkout = ({ onClose }: { onClose: () => void }) => {
                 Esperamos que desfrute de uma deliciosa e agradável experiência
                 gastronômica. Bom apetite!
               </p>
-            </Row>
-            <Botoes type="button">Concluir</Botoes>
+            </S.Row>
+            <Botoes type="button" onClick={() => finalizaCompra()}>
+              Concluir
+            </Botoes>
           </>
         ) : (
           <form onSubmit={form.handleSubmit}>
@@ -153,8 +169,8 @@ const Checkout = ({ onClose }: { onClose: () => void }) => {
                 <Titulo>
                   Pagamento - Valor a pagar {formataPreco(getTotalPrice(itens))}
                 </Titulo>
-                <Row>
-                  <InputGroup>
+                <S.Row>
+                  <S.InputGroup>
                     <label htmlFor="nomeCartao">Nome no cartão</label>
                     <input
                       id="nomeCartao"
@@ -162,65 +178,58 @@ const Checkout = ({ onClose }: { onClose: () => void }) => {
                       name="nomeCartao"
                       value={form.values.nomeCartao}
                       onChange={form.handleChange}
+                      className={getErrorMessage('nomeCartao') ? 'error' : ''}
                     />
-                    <small>
-                      {getErrorMessage('nomeCartao', form.errors.nomeCartao)}
-                    </small>
-                  </InputGroup>
-                  <InputGroup>
+                  </S.InputGroup>
+                  <S.InputGroup>
                     <label htmlFor="numeroCartao">Número do cartão</label>
-                    <input
+                    <InputMask
                       id="numeroCartao"
                       type="text"
                       name="numeroCartao"
                       value={form.values.numeroCartao}
                       onChange={form.handleChange}
+                      className={getErrorMessage('numeroCartao') ? 'error' : ''}
+                      mask="9999 9999 9999 9999"
                     />
-                    <small>
-                      {getErrorMessage(
-                        'numeroCartao',
-                        form.errors.numeroCartao
-                      )}
-                    </small>
-                  </InputGroup>
-                  <InputGroup maxWidth="87px">
+                  </S.InputGroup>
+                  <S.InputGroup maxWidth="87px">
                     <label htmlFor="cvv">CVV</label>
-                    <input
+                    <InputMask
                       id="cvv"
                       type="text"
                       name="cvv"
                       value={form.values.cvv}
                       onChange={form.handleChange}
+                      className={getErrorMessage('cvv') ? 'error' : ''}
+                      mask="999"
                     />
-                    <small>{getErrorMessage('cvv', form.errors.cvv)}</small>
-                  </InputGroup>
-                  <InputGroup maxWidth="155px">
+                  </S.InputGroup>
+                  <S.InputGroup maxWidth="155px">
                     <label htmlFor="mesValidade">Mês de vencimento</label>
-                    <input
+                    <InputMask
                       id="mesValidade"
                       type="text"
                       name="mesValidade"
                       value={form.values.mesValidade}
                       onChange={form.handleChange}
+                      className={getErrorMessage('mesValidade') ? 'error' : ''}
+                      mask="99"
                     />
-                    <small>
-                      {getErrorMessage('mesValidade', form.errors.mesValidade)}
-                    </small>
-                  </InputGroup>
-                  <InputGroup maxWidth="155px">
+                  </S.InputGroup>
+                  <S.InputGroup maxWidth="155px">
                     <label htmlFor="anoValidade">Ano de vencimento</label>
-                    <input
+                    <InputMask
                       id="anoValidade"
                       type="text"
                       name="anoValidade"
                       value={form.values.anoValidade}
                       onChange={form.handleChange}
+                      className={getErrorMessage('anoValidade') ? 'error' : ''}
+                      mask="99"
                     />
-                    <small>
-                      {getErrorMessage('manoValidade', form.errors.anoValidade)}
-                    </small>
-                  </InputGroup>
-                </Row>
+                  </S.InputGroup>
+                </S.Row>
                 <Botoes type="submit" onClick={form.handleSubmit}>
                   Finalizar Compra
                 </Botoes>
@@ -231,8 +240,8 @@ const Checkout = ({ onClose }: { onClose: () => void }) => {
             ) : (
               <>
                 <Titulo>Entrega</Titulo>
-                <Row>
-                  <InputGroup>
+                <S.Row>
+                  <S.InputGroup>
                     <label htmlFor="nomeEntrega">Quem ira receber</label>
                     <input
                       id="nomeEntrega"
@@ -241,12 +250,10 @@ const Checkout = ({ onClose }: { onClose: () => void }) => {
                       value={form.values.nomeEntrega}
                       onChange={form.handleChange}
                       onBlur={form.handleBlur}
+                      className={getErrorMessage('nomeEntrega') ? 'error' : ''}
                     />
-                    <small>
-                      {getErrorMessage('nomeEntrega', form.errors.nomeEntrega)}
-                    </small>
-                  </InputGroup>
-                  <InputGroup>
+                  </S.InputGroup>
+                  <S.InputGroup>
                     <label htmlFor="endereco">Endereço</label>
                     <input
                       id="endereco"
@@ -254,12 +261,10 @@ const Checkout = ({ onClose }: { onClose: () => void }) => {
                       name="endereco"
                       value={form.values.endereco}
                       onChange={form.handleChange}
+                      className={getErrorMessage('endereco') ? 'error' : ''}
                     />
-                    <small>
-                      {getErrorMessage('endereco', form.errors.endereco)}
-                    </small>
-                  </InputGroup>
-                  <InputGroup>
+                  </S.InputGroup>
+                  <S.InputGroup>
                     <label htmlFor="cidade">Cidade</label>
                     <input
                       id="cidade"
@@ -267,24 +272,23 @@ const Checkout = ({ onClose }: { onClose: () => void }) => {
                       name="cidade"
                       value={form.values.cidade}
                       onChange={form.handleChange}
+                      className={getErrorMessage('cidade') ? 'error' : ''}
                     />
-                    <small>
-                      {getErrorMessage('cidade', form.errors.cidade)}
-                    </small>
-                  </InputGroup>
+                  </S.InputGroup>
                   <div className="inputDisplay">
-                    <InputGroup maxWidth="155px">
+                    <S.InputGroup maxWidth="155px">
                       <label htmlFor="CEP">CEP</label>
-                      <input
+                      <InputMask
                         id="CEP"
                         type="text"
                         name="CEP"
                         value={form.values.CEP}
                         onChange={form.handleChange}
+                        className={getErrorMessage('CEP') ? 'error' : ''}
+                        mask="99999-999"
                       />
-                      <small>{getErrorMessage('CEP', form.errors.CEP)}</small>
-                    </InputGroup>
-                    <InputGroup maxWidth="155px">
+                    </S.InputGroup>
+                    <S.InputGroup maxWidth="155px">
                       <label htmlFor="numero">Número</label>
                       <input
                         id="numero"
@@ -292,13 +296,11 @@ const Checkout = ({ onClose }: { onClose: () => void }) => {
                         name="numero"
                         value={form.values.numero}
                         onChange={form.handleChange}
+                        className={getErrorMessage('numero') ? 'error' : ''}
                       />
-                      <small>
-                        {getErrorMessage('numero', form.errors.numero)}
-                      </small>
-                    </InputGroup>
+                    </S.InputGroup>
                   </div>
-                  <InputGroup>
+                  <S.InputGroup>
                     <label htmlFor="complemento">Complemento(opcional)</label>
                     <input
                       id="complemento"
@@ -307,8 +309,8 @@ const Checkout = ({ onClose }: { onClose: () => void }) => {
                       value={form.values.complemento}
                       onChange={form.handleChange}
                     />
-                  </InputGroup>
-                </Row>
+                  </S.InputGroup>
+                </S.Row>
                 <Botoes type="button" onClick={() => setPagamento(true)}>
                   Continuar para o pagamento
                 </Botoes>
@@ -320,7 +322,7 @@ const Checkout = ({ onClose }: { onClose: () => void }) => {
           </form>
         )}
       </Sidebar>
-    </DeliveryContainer>
+    </S.DeliveryContainer>
   )
 }
 

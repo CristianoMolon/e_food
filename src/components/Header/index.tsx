@@ -1,16 +1,17 @@
 import vetorImg from '../../assets/images/simbolos/Vector.png'
 import logo from '../../assets/images/simbolos/logo.png'
-import { Logo, TextoHeader, Vetor } from './styles'
+
+import * as S from './styles'
 
 const Header = () => (
-  <Vetor style={{ backgroundImage: `url(${vetorImg})` }}>
-    <Logo>
+  <S.Vetor style={{ backgroundImage: `url(${vetorImg})` }}>
+    <S.Logo>
       <img src={logo} alt="Efood" />
-      <TextoHeader>
+      <S.TextoHeader>
         Viva experiências gastronômicas no conforto da sua casa
-      </TextoHeader>
-    </Logo>
-  </Vetor>
+      </S.TextoHeader>
+    </S.Logo>
+  </S.Vetor>
 )
 
 export default Header

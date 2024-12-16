@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import vetor from '../../assets/images/simbolos/Vector.png'
 import logo from '../../assets/images/simbolos/logo.png'
+
 import { Titulo } from '../../styles'
-import { Imagem, Tag, Vetor } from './styles'
+import * as S from './styles'
+
 import { open } from '../../store/reducers/cart'
 import { RootReducer } from '../../store'
 
@@ -23,7 +25,7 @@ const Banner = ({ cardapios }: Props) => {
 
   return (
     <>
-      <Vetor style={{ backgroundImage: `url(${vetor})` }}>
+      <S.Vetor style={{ backgroundImage: `url(${vetor})` }}>
         <div className="container">
           <Link to="/">
             <Titulo>Restaurantes</Titulo>
@@ -33,17 +35,17 @@ const Banner = ({ cardapios }: Props) => {
             <Titulo>{itens.length} Produtos(s) no carrinho</Titulo>
           </a>
         </div>
-      </Vetor>
+      </S.Vetor>
 
-      <Imagem
+      <S.Imagem
         key={cardapios.id}
         style={{ backgroundImage: `url(${cardapios.capa})` }}
       >
         <div className="container">
-          <Tag>{cardapios.tipo}</Tag>
+          <S.Tag>{cardapios.tipo}</S.Tag>
           <Titulo>{cardapios.titulo}</Titulo>
         </div>
-      </Imagem>
+      </S.Imagem>
     </>
   )
 }

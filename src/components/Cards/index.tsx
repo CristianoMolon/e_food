@@ -1,4 +1,4 @@
-import { Card, Descricao, Infos, Tag } from './styles'
+import * as S from './styles'
 import estrela from '../../assets/images//simbolos/estrela.png'
 import { Titulo } from '../../styles'
 import Botoes from '../Buttons'
@@ -28,26 +28,26 @@ const Cards = ({
   }
 
   return (
-    <Card>
+    <S.Card>
       <img src={capa} alt={titulo} />
-      <Infos>
+      <S.Infos>
         {destacado.map((info) => {
           if (info) {
-            return <Tag key={info}>{info}</Tag>
+            return <S.Tag key={info}>{info}</S.Tag>
           }
         })}
-      </Infos>
+      </S.Infos>
       <div className="align">
         <Titulo>{titulo}</Titulo>
         <Titulo>
           {avaliacao} <img src={estrela} />
         </Titulo>
       </div>
-      <Descricao>{getDescricao(descricao)}</Descricao>
+      <S.Descricao>{getDescricao(descricao)}</S.Descricao>
       <Botoes type="link" to={`/restaurantes/${id}`}>
         Saiba mais
       </Botoes>
-    </Card>
+    </S.Card>
   )
 }
 

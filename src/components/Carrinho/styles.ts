@@ -42,6 +42,11 @@ export const Sidebar = styled.aside`
   ${Descricao} {
     color: ${Cores.creme};
     font-weight: bold;
+
+    &.emptyCart {
+      text-align: center;
+      margin-top: 32px;
+    }
   }
 
   ${BotaoAdd} {

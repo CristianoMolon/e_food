@@ -1,19 +1,14 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
+
 import Botoes from '../Buttons'
 import { BotaoAdd } from '../Buttons/styles'
-import {
-  Comidas,
-  DescricDoPrato,
-  Modal,
-  ModalCard,
-  ModalContent,
-  NomeDoPrato
-} from './styles'
+import * as S from './styles'
+import { Descricao } from '../Cards/styles'
+import { Titulo } from '../../styles'
 
 import fechar from '../../assets/images/simbolos/fechar.png'
-import { Titulo } from '../../styles'
-import { Descricao } from '../Cards/styles'
+
 import { add, open } from '../../store/reducers/cart'
 import { formataPreco } from '../../utils'
 
@@ -65,12 +60,12 @@ const CardsComidas = ({
 
   return (
     <>
-      <Comidas>
+      <S.Comidas>
         <img src={foto} alt={nome} />
         <div className="align">
-          <NomeDoPrato>{nome}</NomeDoPrato>
+          <S.NomeDoPrato>{nome}</S.NomeDoPrato>
         </div>
-        <DescricDoPrato>{getDescricao(descricao)}</DescricDoPrato>
+        <S.DescricDoPrato>{getDescricao(descricao)}</S.DescricDoPrato>
         <Botoes
           onClick={() => {
             setModal({
@@ -81,13 +76,13 @@ const CardsComidas = ({
         >
           Adicionar ao carrinho
         </Botoes>
-      </Comidas>
-      <Modal className={modal.isVisible ? 'visible' : ''}>
-        <ModalCard>
+      </S.Comidas>
+      <S.Modal className={modal.isVisible ? 'visible' : ''}>
+        <S.ModalCard>
           <header>
             <img src={fechar} onClick={() => closeModal()} />
           </header>
-          <ModalContent className="container">
+          <S.ModalContent className="container">
             <img src={foto} />
             <div>
               <Titulo>{nome}</Titulo>
@@ -97,10 +92,10 @@ const CardsComidas = ({
                 Adicionar ao carrinho - {formataPreco(preco)}
               </BotaoAdd>
             </div>
-          </ModalContent>
-        </ModalCard>
+          </S.ModalContent>
+        </S.ModalCard>
         <div onClick={() => closeModal()} className="overlay"></div>
-      </Modal>
+      </S.Modal>
     </>
   )
 }

@@ -4,23 +4,26 @@ import Banner from '../../components/Banner'
 import ListaPratos from '../../components/ListaPratos'
 import { useGetCardapiosQuery } from '../../services/api'
 import Carrinho from '../../components/Carrinho'
-import Checkout from '../../components/Checkout'
+import Loader from '../../components/Loader'
+
+type PratosParams = {
+  id: string
+}
 
 const Perfil = () => {
-  const { id } = useParams()
+  const { id } = useParams() as PratosParams
 
-  const { data: cardapio } = useGetCardapiosQuery(id!)
+  const { data: cardapio, isLoading } = useGetCardapiosQuery(id)
 
   if (!cardapio) {
-    return <h3>Carregando...</h3>
+    return <Loader />
   }
 
   return (
     <>
       <Banner cardapios={cardapio} />
-      <ListaPratos cardapios={cardapio.cardapio} />
+      <ListaPratos cardapios={cardapio.cardapio} isLoading={isLoading} />
       <Carrinho />
-      <Checkout />
     </>
   )
 }
