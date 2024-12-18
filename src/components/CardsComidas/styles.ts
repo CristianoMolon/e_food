@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Cores, Titulo } from '../../styles'
+import { breakpoints, Cores, Titulo } from '../../styles'
 import { Descricao } from '../Cards/styles'
 
 export const Comidas = styled.div`
@@ -84,5 +84,10 @@ export const ModalContent = styled.div`
 
   ${Descricao} {
     color: ${Cores.branco};
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    display: flex;
+    flex-direction: column;
   }
 `

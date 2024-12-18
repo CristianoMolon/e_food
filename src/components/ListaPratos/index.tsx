@@ -8,15 +8,16 @@ import { ListadePratos } from './styles'
 type Props = {
   cardapios?: Cardapio[]
   isLoading: boolean
+  id?: string
 }
 
-const ListaPratos = ({ cardapios, isLoading }: Props) => {
+const ListaPratos = ({ cardapios, isLoading, id }: Props) => {
   if (isLoading) {
     return <Loader />
   }
 
   return (
-    <Container>
+    <Container id={id}>
       <div className="container">
         <ListadePratos>
           {cardapios &&

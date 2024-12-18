@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Cores, Titulo } from '../../styles'
+import { breakpoints, Cores, Titulo } from '../../styles'
 
 export const Vetor = styled.header`
   width: 100%;
@@ -13,6 +13,12 @@ export const Vetor = styled.header`
     justify-content: space-between;
     align-items: center;
     padding: 82px 0 82px;
+
+    @media (max-width: ${breakpoints.tablet}) {
+      ${Titulo} {
+        font-size: 14px;
+      }
+    }
   }
 `
 

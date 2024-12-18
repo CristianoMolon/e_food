@@ -7,7 +7,8 @@ export const Card = styled.div`
   position: relative;
 
   > img {
-    width: 472px;
+    display: block;
+    width: 100%;
     height: 217px;
     object-fit: cover;
   }

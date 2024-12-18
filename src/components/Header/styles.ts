@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Cores } from '../../styles'
+import { breakpoints, Cores } from '../../styles'
 
 export const Vetor = styled.header`
   width: 100%;
@@ -18,6 +18,10 @@ export const Logo = styled.div`
   img {
     max-width: 125px;
     margin-bottom: 140px;
+
+    @media (max-width: ${breakpoints.desktop}) {
+      margin-bottom: 80px;
+    }
   }
 `
 
@@ -26,4 +30,8 @@ export const TextoHeader = styled.h2`
   width: 38%;
   text-align: center;
   color: ${Cores.vermelho};
+
+  @media (max-width: ${breakpoints.desktop}) {
+    font-size: 24px;
+  }
 `
