@@ -132,6 +132,19 @@ const Checkout = ({ onClose }: { onClose: () => void }) => {
     dispatch(open())
   }
 
+  const validaEntrega = () => {
+    const isEntrgaValida =
+      !form.errors.nomeEntrega &&
+      !form.errors.endereco &&
+      !form.errors.cidade &&
+      !form.errors.numero &&
+      !form.errors.CEP
+
+    if (isEntrgaValida) {
+      setPagamento(true)
+    }
+  }
+
   return (
     <S.DeliveryContainer>
       <Overlay />
@@ -311,7 +324,7 @@ const Checkout = ({ onClose }: { onClose: () => void }) => {
                     />
                   </S.InputGroup>
                 </S.Row>
-                <Botoes type="button" onClick={() => setPagamento(true)}>
+                <Botoes type="button" onClick={validaEntrega}>
                   Continuar para o pagamento
                 </Botoes>
                 <Botoes type="button" onClick={voltaCarrinho}>
