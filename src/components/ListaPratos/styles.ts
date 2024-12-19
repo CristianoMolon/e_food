@@ -13,6 +13,5 @@ export const ListadePratos = styled.ul`
 
   @media (max-width: ${breakpoints.tablet}) {
     grid-template-columns: 1fr;
-    margin: 0 12px;
   }
 `

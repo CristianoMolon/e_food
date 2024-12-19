@@ -15,8 +15,7 @@ export const Botao = styled(Link)`
 `
 
 export const BotaoAdd = styled.button`
-  max-width: 304px;
-  width: 100%;
+  width: 95%;
   text-align: center;
   padding: 4px 6px;
   font-size: 14px;

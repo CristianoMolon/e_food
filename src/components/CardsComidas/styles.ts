@@ -90,4 +90,10 @@ export const ModalContent = styled.div`
     display: flex;
     flex-direction: column;
   }
+
+  @media (min-width: ${breakpoints.desktop}) {
+    button {
+      width: auto;
+    }
+  }
 `
