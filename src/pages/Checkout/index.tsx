@@ -196,6 +196,7 @@ const Checkout = ({ onClose }: { onClose: () => void }) => {
                       name="nomeCartao"
                       value={form.values.nomeCartao}
                       onChange={form.handleChange}
+                      onBlur={form.handleBlur}
                       className={getErrorMessage('nomeCartao') ? 'error' : ''}
                     />
                   </S.InputGroup>
@@ -207,6 +208,7 @@ const Checkout = ({ onClose }: { onClose: () => void }) => {
                       name="numeroCartao"
                       value={form.values.numeroCartao}
                       onChange={form.handleChange}
+                      onBlur={form.handleBlur}
                       className={getErrorMessage('numeroCartao') ? 'error' : ''}
                       mask="9999 9999 9999 9999"
                     />
@@ -219,6 +221,7 @@ const Checkout = ({ onClose }: { onClose: () => void }) => {
                       name="cvv"
                       value={form.values.cvv}
                       onChange={form.handleChange}
+                      onBlur={form.handleBlur}
                       className={getErrorMessage('cvv') ? 'error' : ''}
                       mask="999"
                     />
@@ -231,6 +234,7 @@ const Checkout = ({ onClose }: { onClose: () => void }) => {
                       name="mesValidade"
                       value={form.values.mesValidade}
                       onChange={form.handleChange}
+                      onBlur={form.handleBlur}
                       className={getErrorMessage('mesValidade') ? 'error' : ''}
                       mask="99"
                     />
@@ -243,6 +247,7 @@ const Checkout = ({ onClose }: { onClose: () => void }) => {
                       name="anoValidade"
                       value={form.values.anoValidade}
                       onChange={form.handleChange}
+                      onBlur={form.handleBlur}
                       className={getErrorMessage('anoValidade') ? 'error' : ''}
                       mask="99"
                     />
@@ -279,6 +284,7 @@ const Checkout = ({ onClose }: { onClose: () => void }) => {
                       name="endereco"
                       value={form.values.endereco}
                       onChange={form.handleChange}
+                      onBlur={form.handleBlur}
                       className={getErrorMessage('endereco') ? 'error' : ''}
                     />
                   </S.InputGroup>
@@ -290,6 +296,7 @@ const Checkout = ({ onClose }: { onClose: () => void }) => {
                       name="cidade"
                       value={form.values.cidade}
                       onChange={form.handleChange}
+                      onBlur={form.handleBlur}
                       className={getErrorMessage('cidade') ? 'error' : ''}
                     />
                   </S.InputGroup>
@@ -302,6 +309,7 @@ const Checkout = ({ onClose }: { onClose: () => void }) => {
                         name="CEP"
                         value={form.values.CEP}
                         onChange={form.handleChange}
+                        onBlur={form.handleBlur}
                         className={getErrorMessage('CEP') ? 'error' : ''}
                         mask="99999-999"
                       />
@@ -314,6 +322,7 @@ const Checkout = ({ onClose }: { onClose: () => void }) => {
                         name="numero"
                         value={form.values.numero}
                         onChange={form.handleChange}
+                        onBlur={form.handleBlur}
                         className={getErrorMessage('numero') ? 'error' : ''}
                       />
                     </S.InputGroup>
