@@ -138,7 +138,12 @@ const Checkout = ({ onClose }: { onClose: () => void }) => {
       !form.errors.endereco &&
       !form.errors.cidade &&
       !form.errors.numero &&
-      !form.errors.CEP
+      !form.errors.CEP &&
+      form.values.nomeEntrega !== '' &&
+      form.values.endereco !== '' &&
+      form.values.cidade !== '' &&
+      form.values.numero !== '' &&
+      form.values.CEP !== ''
 
     if (isEntrgaValida) {
       setPagamento(true)
