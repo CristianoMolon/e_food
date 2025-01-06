@@ -53,10 +53,7 @@ const Checkout = ({ onClose }: { onClose: () => void }) => {
         .max(9, 'O campo precisa ter 8 caracteres')
         .required('O campo é obrigatório'),
       numero: Yup.string().required('O campo é obrigatório'),
-      complemento: Yup.string().min(
-        3,
-        'O nome precisa ter no mínimo 3 caracteres'
-      ),
+      complemento: Yup.string(),
       nomeCartao: Yup.string().when((values, schema) =>
         pagamento ? schema.required('O campo é obrigatório') : schema
       ),
@@ -144,6 +141,14 @@ const Checkout = ({ onClose }: { onClose: () => void }) => {
       form.values.cidade !== '' &&
       form.values.numero !== '' &&
       form.values.CEP !== ''
+
+    form.setTouched({
+      nomeEntrega: true,
+      endereco: true,
+      cidade: true,
+      numero: true,
+      CEP: true
+    })
 
     if (isEntrgaValida) {
       setPagamento(true)
